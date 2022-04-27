@@ -2,8 +2,10 @@ package com.sevenyes.a20220426_yesidhuertas_nycschools
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.sevenyes.a20220426_yesidhuertas_nycschools.ui.main.MainFragment
+import com.sevenyes.a20220426_yesidhuertas_nycschools.ui.views.MainFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
