@@ -5,12 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sevenyes.a20220426_yesidhuertas_nycschools.di.ConcurrencyModule.IODispatcher
-import com.sevenyes.a20220426_yesidhuertas_nycschools.network.ISchoolApiRepository
-import com.sevenyes.a20220426_yesidhuertas_nycschools.states.SchoolState
-import com.sevenyes.a20220426_yesidhuertas_nycschools.states.SchoolState.LOADING
-import com.sevenyes.a20220426_yesidhuertas_nycschools.states.SchoolState.SUCCESS
+import com.sevenyes.a20220426_yesidhuertas_nycschools.dataaccess.network.ISchoolApiRepository
+import com.sevenyes.a20220426_yesidhuertas_nycschools.ui.states.SchoolState
+import com.sevenyes.a20220426_yesidhuertas_nycschools.ui.states.SchoolState.LOADING
+import com.sevenyes.a20220426_yesidhuertas_nycschools.ui.states.SchoolState.SUCCESS
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,15 +33,21 @@ class MainViewModel @Inject constructor(
 
     fun getSchools() {
         if (schoolState.value is SUCCESS<*>) return
+        _schoolState.value = LOADING
         viewModelScope.launch(ioDispatcher) {
-            schoolApiRepository.getSchools()
-                .collect { _schoolState.postValue(it) }
+            schoolApiRepository.getSchools(this).collect {
+                _schoolState.postValue(it)
+            }
         }
     }
 
     fun getSchoolDetails(dbn: String) {
         if (dbn.isEmpty()) return
-
-        TODO("Not yet implemented")
+        _schoolDetailsState.value = LOADING
+        viewModelScope.launch(ioDispatcher) {
+            schoolApiRepository.getDetails(dbn).collect {
+                _schoolDetailsState.postValue(it)
+            }
+        }
     }
 }

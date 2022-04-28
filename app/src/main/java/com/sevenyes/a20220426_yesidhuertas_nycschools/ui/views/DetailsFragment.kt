@@ -5,13 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.sevenyes.a20220426_yesidhuertas_nycschools.databinding.FragmentDetailsBinding
-import com.sevenyes.a20220426_yesidhuertas_nycschools.models.SchoolDetails
-import com.sevenyes.a20220426_yesidhuertas_nycschools.states.SchoolState
+import com.sevenyes.a20220426_yesidhuertas_nycschools.dataaccess.models.SchoolDetails
+import com.sevenyes.a20220426_yesidhuertas_nycschools.ui.states.SchoolState
 import com.sevenyes.a20220426_yesidhuertas_nycschools.ui.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class DetailsFragment : DialogFragment() {

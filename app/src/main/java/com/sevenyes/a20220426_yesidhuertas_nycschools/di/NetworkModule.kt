@@ -1,8 +1,9 @@
 package com.sevenyes.a20220426_yesidhuertas_nycschools.di
 
-import com.sevenyes.a20220426_yesidhuertas_nycschools.network.ISchoolApiRepository
-import com.sevenyes.a20220426_yesidhuertas_nycschools.network.SchoolAPI
-import com.sevenyes.a20220426_yesidhuertas_nycschools.network.SchoolApiRepository
+import com.sevenyes.a20220426_yesidhuertas_nycschools.dataaccess.database.IDatabaseRepository
+import com.sevenyes.a20220426_yesidhuertas_nycschools.dataaccess.network.ISchoolApiRepository
+import com.sevenyes.a20220426_yesidhuertas_nycschools.dataaccess.network.SchoolAPI
+import com.sevenyes.a20220426_yesidhuertas_nycschools.dataaccess.network.SchoolApiRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,8 +41,10 @@ class NetworkModule {
             .create(SchoolAPI::class.java)
 
     @Provides
-    fun providesSchoolApiRepository(schoolAPI: SchoolAPI): ISchoolApiRepository =
-        SchoolApiRepository(schoolAPI)
+    fun providesSchoolApiRepository(
+        schoolAPI: SchoolAPI,
+        databaseRepository: IDatabaseRepository
+    ): ISchoolApiRepository = SchoolApiRepository(schoolAPI, databaseRepository)
 
 }
 

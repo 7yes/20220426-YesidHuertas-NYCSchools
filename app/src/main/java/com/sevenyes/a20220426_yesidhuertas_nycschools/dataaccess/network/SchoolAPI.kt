@@ -1,6 +1,6 @@
-package com.sevenyes.a20220426_yesidhuertas_nycschools.network
+package com.sevenyes.a20220426_yesidhuertas_nycschools.dataaccess.network
 
-import com.sevenyes.a20220426_yesidhuertas_nycschools.models.*
+import com.sevenyes.a20220426_yesidhuertas_nycschools.dataaccess.models.*
 import retrofit2.Response
 import retrofit2.http.GET
 

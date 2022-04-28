@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sevenyes.a20220426_yesidhuertas_nycschools.databinding.SchoolItemBinding
-import com.sevenyes.a20220426_yesidhuertas_nycschools.models.School
+import com.sevenyes.a20220426_yesidhuertas_nycschools.dataaccess.models.School
 
 class SchoolAdapter(
     private var schools: List<School> = listOf(),

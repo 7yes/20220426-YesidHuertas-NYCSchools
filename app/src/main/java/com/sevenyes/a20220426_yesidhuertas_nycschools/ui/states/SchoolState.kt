@@ -1,4 +1,4 @@
-package com.sevenyes.a20220426_yesidhuertas_nycschools.states
+package com.sevenyes.a20220426_yesidhuertas_nycschools.ui.states
 
 /**
  * [SchoolState] used to represent state between layers

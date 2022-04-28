@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.sevenyes.a20220426_yesidhuertas_nycschools.databinding.MainFragmentBinding
-import com.sevenyes.a20220426_yesidhuertas_nycschools.models.School
-import com.sevenyes.a20220426_yesidhuertas_nycschools.states.SchoolState
+import com.sevenyes.a20220426_yesidhuertas_nycschools.dataaccess.models.School
+import com.sevenyes.a20220426_yesidhuertas_nycschools.ui.states.SchoolState
 import com.sevenyes.a20220426_yesidhuertas_nycschools.ui.adapters.SchoolAdapter
 import com.sevenyes.a20220426_yesidhuertas_nycschools.ui.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,12 +25,16 @@ class MainFragment : Fragment() {
 
     private val schoolAdapter by lazy {
         SchoolAdapter() {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             DetailsFragment.newDetailsFragment(it)
                 .show(childFragmentManager, DetailsFragment.TAG)
         }
     }
 
+    /**
+     *  used to handle changes in this fragment
+     *  these changes are triggered by the view model
+     *  @param schoolState this is the actual state that the view is in
+     */
     private fun handleStateChanged(schoolState: SchoolState) {
         when (schoolState) {
             is SchoolState.LOADING -> {
@@ -82,4 +86,5 @@ class MainFragment : Fragment() {
     }
 }
 
+// used for logging
 private const val TAG = "MainFragment"
